@@ -1,0 +1,14 @@
+/*========================= Global Class =================================*/
+.h-100-vh {
+	height: 100vh !important;
+}
+
+.nav-avatar {
+	width: 40px;
+	border: 2px solid #ccc;
+	border-radius: 100%;
+	padding: 3px;
+	height: 40px;
+	object-fit: cover;
+	object-position: center;
+}
