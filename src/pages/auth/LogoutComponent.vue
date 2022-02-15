@@ -1,4 +1,5 @@
 <template>
+	<LoaderComponent v-if="isLoading" />
   <button
     class="btn btn-dark"
     type="submit"
@@ -9,6 +10,7 @@
   </button>
 </template>
 <script>
+import LoaderComponent  from "@/components/LoaderComponent.vue";
 export default {
   data: function () {
     return {
@@ -16,6 +18,9 @@ export default {
       isLoading: false,
     };
   },
+	components:{
+		LoaderComponent
+	},
   methods: {
     logout: async function () {
       if (!this.$store.getters.fetchAuthInfo) {
@@ -24,8 +29,8 @@ export default {
         return;
       }
       //logout user from the server session
+			//start loader
       this.isLoading = true;
-      this.logoutButtonText = "loading...";
       //*fetch api url and basic headers from root global mixin
       const loginUrl = this.$root.baseAPIUrl + "/user/logout";
       const headers = this.$root.baseHeaders;
@@ -36,11 +41,12 @@ export default {
         method: "POST",
         headers: headers,
       });
-
+			//stop the loader
       this.isLoading = false;
-      this.logoutButtonText = "Logout";
       //clear browser session and vuex user store
       this.$store.dispatch("clearAuthInfo");
+			//logout and destroy google login data if exists
+			await this.$gAuth.signOut();
       //redirect to the login page
       this.$router.push("/login");
     },

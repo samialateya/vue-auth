@@ -77,8 +77,11 @@
               >Create</router-link
             >
           </div>
+				<!-- #register link -->
         </form>
         <!--#from-->
+				<!-- social login -->
+				<SocialLoginComponent v-on:googleError="socialLoginErrors"/>
       </div>
       <!--#login card -->
     </div>
@@ -89,6 +92,7 @@
 <script>
 import ErrorMessageComponent from "@/components/alerts/ErrorMessageComponent.vue";
 import InfoMessageComponent from "@/components/alerts/InfoMessageComponent.vue";
+import SocialLoginComponent from "./SocialLoginComponent.vue";
 export default {
   name: "LoginPage",
   data: function () {
@@ -101,7 +105,8 @@ export default {
 
 	components:{
 		ErrorMessageComponent,
-		InfoMessageComponent
+		InfoMessageComponent,
+		SocialLoginComponent,
 	},
 
   methods: {
@@ -171,13 +176,17 @@ export default {
 			//set loader element to true to enable clicking login button
       this.isLoading = false;
     },
-		//? this function used to set authentication functionality
+		//* this function used to set authentication functionality
 		authenticateUser: function (userData) {
 			//first save the user data to vue store
 			this.$store.dispatch('storeAuthInfo',userData);
 			//redirect user to home pages
 			this.$router.push("/");
 		},
+		//* catch social login errors and print them to user
+		socialLoginErrors: function (error) {
+			this.report = error;
+		}
   },
 	beforeMount: function () {
 		//redirect authenticated user to home page
