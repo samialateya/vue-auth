@@ -6,7 +6,7 @@
     <a href="#" class="btn btn-block btn-danger" @click.prevent="googleLogin()"
       >Google</a
     >
-    <a href="#" @click="handleClickSignOut()" class="btn btn-block btn-primary"
+    <a href="#" @click.prevent="facebookLogin()" class="btn btn-block btn-primary"
       >Facebook</a
     >
   </div>
@@ -15,6 +15,7 @@
 <script>
 import { inject } from "vue";
 import LoaderComponent  from "@/components/LoaderComponent.vue";
+// const facebookAppId = process.env.VUE_APP_FACEBOOK_APP_ID;
 export default {
   name: "SocialLoginComponent",
 	components:{
@@ -28,24 +29,16 @@ export default {
   },
   methods: {
     googleLogin: async function () {
-      //?check if the user is already logged in with google
-      if (this.Vue3GoogleOauth.isAuthorized) {
-				//*catch user data
-        const googleUser = this.$gAuth.instance.currentUser.get();
-				//*prepare the data
-        const userData = {
-          name: googleUser.getBasicProfile().getName(),
-          email: googleUser.getBasicProfile().getEmail(),
-          avatar: googleUser.getBasicProfile().getImageUrl(),
-          id_token: googleUser.getAuthResponse().id_token,
-        };
-				//? when user Data is ready send request to the server to verify ID token
-        this.verifyIDToken(userData)
-        return;
-      }
       try {
-        //* open google auth popup and wait for the user to agree for the login
-        const googleUser = await this.$gAuth.signIn();
+				let googleUser;
+				//?check if the user is already logged in with google
+				if (this.Vue3GoogleOauth.isAuthorized) {
+					googleUser = this.$gAuth.instance.currentUser.get();
+				}
+				//? else open google auth popup and wait for the user to agree for the login
+				else {
+					googleUser = await this.$gAuth.signIn();
+				}
         //* get the user profile information
         const userData = {
           name: googleUser.getBasicProfile().getName(),
@@ -55,12 +48,14 @@ export default {
         };
         //? when user Data is ready send request to the server to verify ID token
         this.verifyIDToken(userData)
-      } catch (error) {
+      } 
+			catch (error) {
         //?when user cancels the login or error occurred: send error message
         this.printErrorMessage("Google login failed")
-        
       }
     },
+		facebookLogin: async function(){
+		},
 
 		//verify user id_token in the server
 		verifyIDToken:async function(userData){

@@ -46,7 +46,7 @@ export default {
       //clear browser session and vuex user store
       this.$store.dispatch("clearAuthInfo");
 			//logout and destroy google login data if exists
-			await this.$gAuth.signOut();
+			// await this.$gAuth.signOut();
       //redirect to the login page
       this.$router.push("/login");
     },
