@@ -13,17 +13,16 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-		<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-		<!-- <script>
-			function onSignIn(googleUser) {
-				console.log(googleUser.grantOfflineAccess());
-					var profile = googleUser.getBasicProfile();
-					console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-					console.log('Name: ' + profile.getName());
-					console.log('Image URL: ' + profile.getImageUrl());
-					console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-				}
-		</script> -->
+		<script>
+			window.fbAsyncInit = function () {
+				FB.init({
+					appId: '724769572262381',
+					autoLogAppEvents: true,
+					xfbml: true,
+					version: 'v13.0'
+				});
+			};
+		</script>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
   </body>
 </html>

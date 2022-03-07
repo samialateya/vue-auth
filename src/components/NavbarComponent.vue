@@ -27,8 +27,8 @@
           </li>
         </ul>
         <!-- right menu links-->
-				<router-link to="/profile"><img :src="user.avatar" class="nav-avatar"></router-link>
-				<router-link to="/profile" style="text-decoration:none !important;"><span class="text-muted mx-3 mt-2 h5">{{ user.name }}</span></router-link>
+				<router-link to="/profile"><img :src="user?.avatar" class="nav-avatar"></router-link>
+				<router-link to="/profile" style="text-decoration:none !important;"><span class="text-muted mx-3 mt-2 h5">{{ user?.name }}</span></router-link>
         <LogoutComponent />
       </div>
       <!-- #navbar links-->
