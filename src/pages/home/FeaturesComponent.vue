@@ -122,25 +122,9 @@
         </div>
         <h2>Authentication Setup</h2>
         <p>
-          get started quickly with full authentication functionality for admin
-          and user.
-        </p>
-      </div>
-      <!-- feature item -->
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#collection"></use>
-          </svg>
-        </div>
-        <h2>Admin Dashboard</h2>
-        <p>
-          Ready to use admin dashboard designed with
-          <a
-            href="https://www.bootstrapdash.com/product/purple-free-admin-template/"
-          >
-            Purple Dashboard
-          </a>
+          get started quickly with the authentication setup.<br>
+					find out login and signup methods, social login,
+					vue store and local storage management.
         </p>
       </div>
       <!-- feature item -->
@@ -150,8 +134,20 @@
             <use xlink:href="#toggles2"></use>
           </svg>
         </div>
-        <h2>API Endpoints</h2>
-        <p>Ready to use API endpoints for authentication and other services.</p>
+        <h2>Social login</h2>
+        <p>
+          Full Authentication mechanism with Facebook and Google OAuth
+        </p>
+      </div>
+      <!-- feature item -->
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em">
+            <use xlink:href="#collection"></use>
+          </svg>
+        </div>
+        <h2>Easy Expansion Project</h2>
+        <p>The Design pattern form this template gives you more flexibility and easy scaling</p>
       </div>
     </div>
     <!-- #features -->

@@ -8,7 +8,10 @@ import GAuth from 'vue3-google-oauth2'
 //import helpers files to be used as global mixin
 import APIHelper from "./helpers/api.js";
 import AuthHelper from "./helpers/auth-helper.js";
-import MiddlewareHelper from "./helpers/middleware.js"
+import MiddlewareHelper from "./helpers/middleware.js";
+//helper to inject facebook sdk in to main HTML file
+import { initFacebookSdk } from './helpers/init-facebook-sdk.js';
+
 //import bootstrap5
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
@@ -18,8 +21,11 @@ const gAuthOptions = { clientId: GOOGLE_CLIENT_ID, scope: 'email', prompt: 'cons
 //import global css file
 import "./assets/css/global.css";
 
-createApp({ extends: App, mixins: [APIHelper, MiddlewareHelper, AuthHelper] })
-.use(router)
-.use(store)
-.use(GAuth, gAuthOptions)
-.mount('#app');
+//fires inject facebook sdk then start Vue App
+initFacebookSdk().then(() => {
+	createApp({ extends: App, mixins: [APIHelper, MiddlewareHelper, AuthHelper] })
+	.use(router)
+	.use(store)
+	.use(GAuth, gAuthOptions)
+	.mount('#app');
+});
