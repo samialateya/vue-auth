@@ -26,6 +26,8 @@ User has the following features provided as Web and API
 - File Upload
 - UI is built with [Bootstrap 5](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 
+Please be aware that I'm using Laravel to handle all backend functionality you can find the backend repo here [AuthStarter](https://github.com/samialateya/Auth-Starter)
+
 
 ## Installation
 
