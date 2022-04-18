@@ -5,7 +5,7 @@
 const APIHelper = {
 	data: function () {
 		return {
-			baseAPIUrl: "http://localhost/togithub/AuthStarter/public/api",
+			baseAPIUrl: "http://127.0.0.1:8000/api",
 			baseHeaders: {
 				"Accept": "application/json",
 			},
